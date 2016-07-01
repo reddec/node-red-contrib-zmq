@@ -1,0 +1,59 @@
+<script type="text/javascript">
+  RED.nodes.registerType('zmq-reader', {
+    category: 'input',
+    color: '#a6bbcf',
+    defaults: {
+      name: {
+        value: ""
+      },
+      mode: {
+        value: "sub"
+      },
+      uri: {
+        value: "",
+        required: true
+      },
+      server: {
+        value: true
+      },
+      topics: {
+        value: "",
+      }
+    },
+    inputs: 0,
+    outputs: 1,
+    label: function() {
+      return this.name ? (this.name + "(" + this.uri + ")") : "zmq-reader";
+    }
+  });
+</script>
+
+<script type="text/x-red" data-template-name="zmq-reader">
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+  <div class="form-row">
+    <label for="node-input-mode"><i class="icon-tag"></i> Mode</label>
+    <select name="node-input-mode">
+      <option value='sub'>SUB</option>
+      <option value='pull'>PULL</option>
+    </select>
+  </div>
+  <div class="form-row">
+    <label for="node-input-uri"><i class="icon-tag"></i> URI</label>
+    <input type="text" id="node-input-uri" placeholder="URI">
+  </div>
+  <div class="form-row">
+    <label for="node-input-server"><i class="icon-tag"></i> Is server</label>
+    <input type="checkbox" id="node-input-server">
+  </div>
+  <div class="form-row">
+    <label for="node-input-topics"><i class="icon-tag"></i> Topics</label>
+    <input type="text" id="node-input-topics" placeholder="List of topics to subscribe (only for SUB)">
+  </div>
+</script>
+
+<script type="text/x-red" data-help-name="lower-case">
+  <p>A simple node that converts the message payloads into all lower-case characters</p>
+</script>

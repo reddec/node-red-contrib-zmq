@@ -1,0 +1,20 @@
+{
+  "name": "node-red-contrib-zmq",
+  "version": "0.5.0",
+  "description": "ZeroMQ nodes for Node-Red",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Baryshnikov Alexander <dev@baryshnikov.net>",
+  "repository" : "https://github.com/reddec/node-red-contrib-zmq",
+  "license": "GPL-3.0",
+  "node-red": {
+    "nodes": {
+      "zmq-reader": "reader/reader.js"
+    }
+  },
+  "keywords" : ["node-red", "zmq", "node-red-zmq", "zeromq", "node-zeromq"],
+  "dependencies": {
+    "zmq": "^2.15.3"
+  }
+}
