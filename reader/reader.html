@@ -1,7 +1,8 @@
 <script type="text/javascript">
   RED.nodes.registerType('zmq-reader', {
     category: 'input',
-    color: '#a6bbcf',
+    color: '#E9967A',
+
     defaults: {
       name: {
         value: ""
@@ -22,6 +23,7 @@
     },
     inputs: 0,
     outputs: 1,
+    icon: "zmq.png",
     label: function() {
       return this.name ? (this.name + "(" + this.uri + ")") : "zmq-reader";
     }
@@ -41,15 +43,15 @@
     </select>
   </div>
   <div class="form-row">
-    <label for="node-input-uri"><i class="icon-tag"></i> URI</label>
+    <label for="node-input-uri"><i class="icon-link"></i> URI</label>
     <input type="text" id="node-input-uri" placeholder="URI">
   </div>
   <div class="form-row">
-    <label for="node-input-server"><i class="icon-tag"></i> Is server</label>
+    <label for="node-input-server"><i class="icon-server"></i> Is server</label>
     <input type="checkbox" id="node-input-server">
   </div>
   <div class="form-row">
-    <label for="node-input-topics"><i class="icon-tag"></i> Topics</label>
+    <label for="node-input-topics"><i class="icon-rss"></i> Topics</label>
     <input type="text" id="node-input-topics" placeholder="List of topics to subscribe (only for SUB)">
   </div>
 </script>
