@@ -1,35 +1,32 @@
 <script type="text/javascript">
-  RED.nodes.registerType('zmq-reader', {
-    category: 'input',
+  RED.nodes.registerType('zmq-writer', {
+    category: 'output',
     color: '#E9967A',
     defaults: {
       name: {
         value: ""
       },
       mode: {
-        value: "sub"
+        value: "pub"
       },
       uri: {
         value: "",
         required: true
       },
       server: {
-        value: true
-      },
-      topics: {
-        value: "",
+        value: false
       }
     },
-    inputs: 0,
-    outputs: 1,
+    inputs: 1,
+    outputs: 0,
     icon: "zmq.png",
     label: function() {
-      return this.name ? (this.name + "(" + this.uri + ")") : "zmq-reader";
+      return this.name ? (this.name + "(" + this.uri + ")") : "zmq-writer";
     }
   });
 </script>
 
-<script type="text/x-red" data-template-name="zmq-reader">
+<script type="text/x-red" data-template-name="zmq-writer">
   <div class="form-row">
     <label for="node-input-name"><i class="icon-tag"></i> Name</label>
     <input type="text" id="node-input-name" placeholder="Name">
@@ -37,8 +34,8 @@
   <div class="form-row">
     <label for="node-input-mode"><i class="icon-tag"></i> Mode</label>
     <select name="node-input-mode">
-      <option value='sub'>SUB</option>
-      <option value='pull'>PULL</option>
+      <option value='pub'>PUB</option>
+      <option value='push'>PUSH</option>
     </select>
   </div>
   <div class="form-row">
@@ -49,12 +46,8 @@
     <label for="node-input-server"><i class="icon-server"></i> Is server</label>
     <input type="checkbox" id="node-input-server">
   </div>
-  <div class="form-row">
-    <label for="node-input-topics"><i class="icon-rss"></i> Topics</label>
-    <input type="text" id="node-input-topics" placeholder="List of topics to subscribe (only for SUB)">
-  </div>
 </script>
 
 <script type="text/x-red" data-help-name="lower-case">
-  <p>ZMQ input endpoint. Provides array of string of input messages</p>
+  <p>ZMQ output endpoint that accepts <code>payload</code> as <code>string</code> type or as <code>array</code> (will be used multipart message)</p>
 </script>

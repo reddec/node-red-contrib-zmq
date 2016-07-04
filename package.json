@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-zmq",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "description": "ZeroMQ nodes for Node-Red",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +10,8 @@
   "license": "GPL-3.0",
   "node-red": {
     "nodes": {
-      "zmq-reader": "reader/reader.js"
+      "zmq-reader": "reader/reader.js",
+      "zmq-writer": "writer/writer.js"
     }
   },
   "keywords" : ["node-red", "zmq", "node-red-zmq", "zeromq", "node-zeromq"],
