@@ -1,29 +1,32 @@
 <script type="text/javascript">
-  RED.nodes.registerType('zmq-writer', {
-    category: 'output',
-    color: '#E9967A',
-    defaults: {
-      name: {
-        value: ""
-      },
-      mode: {
-        value: "pub"
-      },
-      uri: {
-        value: "",
-        required: true
-      },
-      server: {
-        value: false
-      }
-    },
-    inputs: 1,
-    outputs: 0,
-    icon: "zmq.png",
-    label: function() {
-      return this.name ? (this.name + "(" + this.uri + ")") : "zmq-writer";
-    }
-  });
+    RED.nodes.registerType('zmq-writer', {
+        category: 'output',
+        color: '#E9967A',
+        defaults: {
+            name: {
+                value: ""
+            },
+            mode: {
+                value: "pub"
+            },
+            uri: {
+                value: "",
+                required: true
+            },
+            topic: {
+                value: ""
+            },
+            server: {
+                value: false
+            }
+        },
+        inputs: 1,
+        outputs: 0,
+        icon: "zmq.png",
+        label: function () {
+            return this.name ? (this.name + "(" + this.uri + ")") : (this.uri.split(',')[0] + (this.uri.split(',').length > 1 ? ", ..." : ""));
+        }
+    });
 </script>
 
 <script type="text/x-red" data-template-name="zmq-writer">
@@ -33,7 +36,7 @@
   </div>
   <div class="form-row">
     <label for="node-input-mode"><i class="icon-tag"></i> Mode</label>
-    <select name="node-input-mode">
+    <select name="node-input-mode" onchange="document.getElementById('node-input-topic-container').style.display = (this.options[this.selectedIndex].value === 'pub' ? 'inherit' : 'none')">
       <option value='pub'>PUB</option>
       <option value='push'>PUSH</option>
     </select>
@@ -44,10 +47,15 @@
   </div>
   <div class="form-row">
     <label for="node-input-server"><i class="icon-server"></i> Is server</label>
-    <input type="checkbox" id="node-input-server">
+    <input type="checkbox" id="node-input-server"/>
+  </div>
+  <div class="form-row" id="node-input-topic-container">
+    <label for="node-input-topic"><i class="icon-link"></i> Topic</label>
+    <input type="text" id="node-input-topic" placeholder="Fixed topic name">
   </div>
 </script>
 
-<script type="text/x-red" data-help-name="lower-case">
+<script type="text/x-red" data-help-name="zmq-writer">
   <p>ZMQ output endpoint that accepts <code>payload</code> as <code>string</code> type or as <code>array</code> (will be used multipart message)</p>
+  <p>Property <b>topic</b> must be defined in node or be override in message for <b>PUB</b> socket.</p>
 </script>
